@@ -1,0 +1,109 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{E3F4EE67-6616-45A0-A0D3-413BA7B44E0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9D3F96C8-B485-48C5-885E-7C287DB2E9C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate", "Src\Core\SOCATemplate\SOCATemplate.csproj", "{473C1C30-9420-4525-BB2D-9DD18F5ECBBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.Application", "Src\Core\SOCATemplate.Application\SOCATemplate.Application.csproj", "{F0B258F4-FFAB-4566-9738-FC518057C191}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.Infrastructure", "Src\Core\SOCATemplate.Infrastructure\SOCATemplate.Infrastructure.csproj", "{AD880FF4-CCF0-4DB0-8015-4D107BD93F86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{11281FA4-E0C8-4010-AF64-ED1536BD4130}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.DbMigration.SqlServer", "Src\Migrations\SOCATemplate.DbMigration.SqlServer\SOCATemplate.DbMigration.SqlServer.csproj", "{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{1B446567-F49F-4A5E-8CDD-D396CB0D3746}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{21BD50DA-8075-403B-9D27-077B40FAE5B0}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+		Docs\References.txt = Docs\References.txt
+		Docs\SOCATemplate.bsdesign = Docs\SOCATemplate.bsdesign
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE9C90A9-7E25-4AE8-B4B8-B362128FC45A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.DbMigration.InMemoryDatabase", "Src\Migrations\SOCATemplate.DbMigration.InMemoryDatabase\SOCATemplate.DbMigration.InMemoryDatabase.csproj", "{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.DbMigration.PostgreSQL", "Src\Migrations\SOCATemplate.DbMigration.PostgreSQL\SOCATemplate.DbMigration.PostgreSQL.csproj", "{B091A7DE-89B6-452E-8308-9883CA0DD8A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.DbMigration.SQLite", "Src\Migrations\SOCATemplate.DbMigration.SQLite\SOCATemplate.DbMigration.SQLite.csproj", "{79D7ED7D-A8EB-46F1-880D-66C4605F857B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.AdminConsole", "Src\Presentation\SOCATemplate.AdminConsole\SOCATemplate.AdminConsole.csproj", "{B4093C79-4FC1-48E4-A718-4F041F7452A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B98C40E0-0C9A-4CC4-8880-59E1134CA25C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOCATemplate.UnitTests", "Tests\SOCATemplate.UnitTests\SOCATemplate.UnitTests.csproj", "{A22660BA-AABB-439E-BE23-909B71530F8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{473C1C30-9420-4525-BB2D-9DD18F5ECBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473C1C30-9420-4525-BB2D-9DD18F5ECBBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473C1C30-9420-4525-BB2D-9DD18F5ECBBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473C1C30-9420-4525-BB2D-9DD18F5ECBBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0B258F4-FFAB-4566-9738-FC518057C191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B258F4-FFAB-4566-9738-FC518057C191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B258F4-FFAB-4566-9738-FC518057C191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B258F4-FFAB-4566-9738-FC518057C191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD880FF4-CCF0-4DB0-8015-4D107BD93F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD880FF4-CCF0-4DB0-8015-4D107BD93F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD880FF4-CCF0-4DB0-8015-4D107BD93F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD880FF4-CCF0-4DB0-8015-4D107BD93F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B091A7DE-89B6-452E-8308-9883CA0DD8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B091A7DE-89B6-452E-8308-9883CA0DD8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B091A7DE-89B6-452E-8308-9883CA0DD8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B091A7DE-89B6-452E-8308-9883CA0DD8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D7ED7D-A8EB-46F1-880D-66C4605F857B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D7ED7D-A8EB-46F1-880D-66C4605F857B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D7ED7D-A8EB-46F1-880D-66C4605F857B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D7ED7D-A8EB-46F1-880D-66C4605F857B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4093C79-4FC1-48E4-A718-4F041F7452A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4093C79-4FC1-48E4-A718-4F041F7452A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4093C79-4FC1-48E4-A718-4F041F7452A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4093C79-4FC1-48E4-A718-4F041F7452A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22660BA-AABB-439E-BE23-909B71530F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22660BA-AABB-439E-BE23-909B71530F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22660BA-AABB-439E-BE23-909B71530F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22660BA-AABB-439E-BE23-909B71530F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9D3F96C8-B485-48C5-885E-7C287DB2E9C9} = {E3F4EE67-6616-45A0-A0D3-413BA7B44E0C}
+		{473C1C30-9420-4525-BB2D-9DD18F5ECBBB} = {9D3F96C8-B485-48C5-885E-7C287DB2E9C9}
+		{F0B258F4-FFAB-4566-9738-FC518057C191} = {9D3F96C8-B485-48C5-885E-7C287DB2E9C9}
+		{AD880FF4-CCF0-4DB0-8015-4D107BD93F86} = {9D3F96C8-B485-48C5-885E-7C287DB2E9C9}
+		{11281FA4-E0C8-4010-AF64-ED1536BD4130} = {E3F4EE67-6616-45A0-A0D3-413BA7B44E0C}
+		{A3A6FB8E-21C0-4542-ADEF-E89C4B706A68} = {11281FA4-E0C8-4010-AF64-ED1536BD4130}
+		{1B446567-F49F-4A5E-8CDD-D396CB0D3746} = {E3F4EE67-6616-45A0-A0D3-413BA7B44E0C}
+		{E2F2E266-E788-4DAF-BCBA-9DCA2B4D88A0} = {11281FA4-E0C8-4010-AF64-ED1536BD4130}
+		{B091A7DE-89B6-452E-8308-9883CA0DD8A6} = {11281FA4-E0C8-4010-AF64-ED1536BD4130}
+		{79D7ED7D-A8EB-46F1-880D-66C4605F857B} = {11281FA4-E0C8-4010-AF64-ED1536BD4130}
+		{B4093C79-4FC1-48E4-A718-4F041F7452A3} = {1B446567-F49F-4A5E-8CDD-D396CB0D3746}
+		{A22660BA-AABB-439E-BE23-909B71530F8C} = {B98C40E0-0C9A-4CC4-8880-59E1134CA25C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9404288A-594D-44D5-B5D1-E81B025B75E5}
+	EndGlobalSection
+EndGlobal
