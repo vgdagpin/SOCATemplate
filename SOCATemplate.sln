@@ -22,7 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{21BD50DA-8
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.md = ReadMe.md
 		Docs\References.txt = Docs\References.txt
-		Docs\SOCATemplate.bsdesign = Docs\SOCATemplate.bsdesign
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE9C90A9-7E25-4AE8-B4B8-B362128FC45A}"
