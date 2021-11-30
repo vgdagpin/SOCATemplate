@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>  
   <Entities>
-    <!--<ExcludedFiles>
-      <element>../../SOCATemplate.Application/Common/Entities/Base/BaseEntity.cs</element>
-    </ExcludedFiles>-->
-    <Namespaces>
-      <element>SOCATemplate.Application.Common.Entities</element>
-    </Namespaces>
     <Path>../../SOCATemplate.Application/Common/Entities</Path>
+
+    <!--
+    <ExcludedEntities>
+      <ExcludedEntity>../../SOCATemplate.Application/Common/Entities/Base/BaseEntity.cs</ExcludedEntity>
+    </ExcludedEntities>
+    -->
+
+    <Namespaces>
+      <Namespace>SOCATemplate.Application.Common.Entities</Namespace>
+    </Namespaces>
   </Entities>
   
   <DbContext>

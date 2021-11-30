@@ -16,15 +16,27 @@ namespace SOCATemplate.DbMigration.SQLite.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
 
-            modelBuilder.Entity("SOCATemplate.Application.Common.Entities.User", b =>
+            modelBuilder.Entity("SOCATemplate.Application.Common.Entities.tbl_User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ID");
 
-                    b.ToTable("tbl_User", "dbo");
+                    b.ToTable("tbl_tbl_User", "dbo");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Test User"
+                        });
                 });
 #pragma warning restore 612, 618
         }

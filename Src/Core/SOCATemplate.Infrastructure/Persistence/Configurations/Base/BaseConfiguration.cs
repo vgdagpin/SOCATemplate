@@ -14,22 +14,8 @@ namespace SOCATemplate.Infrastructure.Persistence
     {
         private EntityTypeBuilder<T> m_EntityTypeBuilder;
 
-        protected virtual string Schema
-        {
-            get
-            {
-                return "dbo";
-            }
-        }
-
-        protected virtual string TableName
-        {
-            get
-            {
-                return $"tbl_{typeof(T).Name}";
-                // return $"{Pluralize(typeof(T).Name)}";
-            }
-        }
+        protected virtual string Schema => "dbo";
+        protected virtual string TableName => $"tbl_{typeof(T).Name}";
 
         protected virtual void KeyBuilder(BaseKeyBuilder<T> builder) 
         {
@@ -80,21 +66,6 @@ namespace SOCATemplate.Infrastructure.Persistence
             ConfigureRelationship(new BaseRelationshipBuilder<T>(builder));
             ConfigureEntity(builder);
             SeedData(new BaseSeeder<T>(builder));
-        }
-
-        protected virtual string Pluralize(string input)
-        {
-            string _retVal = input ?? "";
-
-            if (_retVal.Trim() == "") return "";
-            if (_retVal.EndsWith("Data")) return _retVal;
-            if (_retVal.EndsWith("ch")) return _retVal + "es";
-            if (_retVal.EndsWith("sis")) return _retVal.Substring(0, _retVal.Length - 3) + "ses";
-            if (_retVal.EndsWith("s")) return _retVal + "es";
-            if (_retVal.EndsWith("ay")) return _retVal + "s";
-            if (_retVal.EndsWith("y")) return _retVal.Substring(0, _retVal.Length - 1) + "ies";
-
-            return _retVal + "s";
         }
 
         protected virtual void SetDecimalPrecisions(EntityTypeBuilder<T> builder, int precision = 20, int scale = 6)

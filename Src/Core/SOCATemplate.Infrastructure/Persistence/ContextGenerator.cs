@@ -23,11 +23,11 @@ namespace SOCATemplate.Infrastructure.Persistence
         public bool HasSeedData { get; set; }
 
         #region Entities
-        private DbSet<User> db_Users { get; set; }
-        public IQueryable<User> Users 
+        private DbSet<tbl_User> db_Users { get; set; }
+        public IQueryable<tbl_User> Users 
         { 
             get => db_Users;
-            private set => db_Users = (DbSet<User>)value;
+            private set => db_Users = (DbSet<tbl_User>)value;
         }
 
         #endregion
@@ -43,7 +43,7 @@ namespace SOCATemplate.Infrastructure.Persistence
 namespace SOCATemplate.Infrastructure.Persistence.Configurations
 {
     #region Configurations
-    public partial class User_Configuration : BaseConfiguration<User> { }
+    public partial class tbl_User_Configuration : BaseConfiguration<tbl_User> { }
     #endregion
 }
 

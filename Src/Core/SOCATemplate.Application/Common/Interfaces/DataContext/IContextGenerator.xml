@@ -2,11 +2,15 @@
 <root>
   <Entities>
     <Path>../../../Common/Entities</Path>
-    <!--<ExcludedFiles>
-      <element>../../../Common/Entities/Base/BaseEntity.cs</element>
-    </ExcludedFiles>-->
+
+    <!--
+    <ExcludedEntities>
+      <ExcludedEntity>../../../Common/Entities/Base/BaseEntity.cs</ExcludedEntity>
+    </ExcludedEntities>
+    -->
+    
     <Namespaces>
-      <element>SOCATemplate.Application.Common.Entities</element>
+      <Namespace>SOCATemplate.Application.Common.Entities</Namespace>
     </Namespaces>    
   </Entities>
   

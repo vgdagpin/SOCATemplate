@@ -21,7 +21,7 @@ namespace SOCATemplate.Application.Common.Interfaces
         bool HasSeedData { get; set; }
 
         #region Entities
-        IQueryable<User> Users { get; }
+        IQueryable<tbl_User> Users { get; }
         #endregion
 
         int SaveChanges();

@@ -16,6 +16,16 @@ namespace SOCATemplate.AdminConsole
 {
     public class Program : IDesignTimeDbContextFactory<SOCATemplateDbContext>
     {
+        static void Main(string[] args)
+        {
+            ServiceProvider.GetService<SOCATemplateDbContext>().Database.Migrate();
+
+            Console.WriteLine("Hello World!");
+        }
+
+
+
+        #region Configuration
         private static IConfiguration configuration = null;
         public static IConfiguration Configuration
         {
@@ -35,7 +45,9 @@ namespace SOCATemplate.AdminConsole
                 return configuration;
             }
         }
+        #endregion
 
+        #region ServiceProvider
         private static IServiceProvider serviceProvider;
         public static IServiceProvider ServiceProvider
         {
@@ -51,17 +63,7 @@ namespace SOCATemplate.AdminConsole
                 return serviceProvider;
             }
         }
-
-        static async Task Main(string[] args)
-        {
-            ServiceProvider.GetService<SOCATemplateDbContext>().Database.Migrate();
-
-            Console.WriteLine("Hello World!");
-        }
-
-
-        
-
+        #endregion
 
         public SOCATemplateDbContext CreateDbContext(string[] args) => ServiceProvider.GetService<SOCATemplateDbContext>();
     }

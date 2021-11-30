@@ -29,11 +29,11 @@ var xConfig = (from c in xDoc.Descendants("root")
                 {
                     Path = ents.Element("Path").Value,
                     Namespaces = ents.Elements("Namespaces")
-                        .Elements("element")    
+                        .Elements("Namespace")    
                         .Select(ns => ns.Value)
                         .ToList(),
-                    ExcludedFiles = ents.Elements("ExcludedFiles")
-                        .Elements("element")
+                    ExcludedEntities = ents.Elements("ExcludedEntities")
+                        .Elements("ExcludedEntity")
                         .Select(ns => ns.Value)
                         .ToList(),
                 }).FirstOrDefault()
@@ -41,7 +41,7 @@ var xConfig = (from c in xDoc.Descendants("root")
             .FirstOrDefault();
                              
 var entitiesDirectory = Path.GetFullPath(Path.Combine(entitiesPath,xConfig.Entities.Path));
-var excludedPath = xConfig.Entities.ExcludedFiles;                 
+var excludedPath = xConfig.Entities.ExcludedEntities;                 
 var excludedTypes = excludedPath != null
     ? excludedPath.Select(a => Path.GetFullPath(Path.Combine(entitiesPath, a)))
     : new List<string>().ToArray();
@@ -74,8 +74,8 @@ namespace <#= xConfig.IDbContext.Namespace #>
         bool HasSeedData { get; set; }
 
         #region Entities
-<# foreach (var _eachFile in entities) { if (excludedTypes.Contains(_eachFile)) continue; #>
-        IQueryable<<#= Path.GetFileNameWithoutExtension(_eachFile) #>> <#= Pluralize(Path.GetFileNameWithoutExtension(_eachFile)) #> { get; }
+<# foreach (var entity in entities) { if (excludedTypes.Contains(entity)) continue; #>
+        IQueryable<<#= GetEntityType(entity) #>> <#= GetEntityName(entity, pluralized:true) #> { get; }
 <# } #>
         #endregion
 
@@ -86,7 +86,29 @@ namespace <#= xConfig.IDbContext.Namespace #>
 
 
 <#+
-private string Pluralize(string input)
+string GetEntityType(string filePath)
+{
+    return Path.GetFileNameWithoutExtension(filePath);
+}
+
+string GetEntityName(string filePath, bool pluralized = false)
+{
+    var temp = Path.GetFileNameWithoutExtension(filePath);
+
+    if (temp.StartsWith("tbl_"))
+    {
+        temp = temp.Substring(4);
+    }
+
+    if (pluralized)
+    {
+        return Pluralize(temp);
+    }
+
+    return temp;
+}
+
+string Pluralize(string input)
 {
     string _retVal = input ?? "";
 
