@@ -1,11 +1,12 @@
-﻿$projectName = "Argus" #New Project Name
-$projectDir = "D:\Git Workspace\Personal" #New Project Directory
+﻿# Paste this script to your directory where you want your new project to be created
 
+$projectName = Read-Host 'Enter your new project name'
+$templatePath = "C:\Project Repositories\GitHub\Personal Projects\SOCATemplate" # Template Path
 
+$projectDir = "$($PSScriptRoot)\"
 $textToSearch = "SOCATemplate"
 $textToReplace = $projectName
 
-$sourcePath = "$($PSScriptRoot)\"
 $targetPath = Join-Path $projectDir "$($textToReplace)"
 
 $exclude = @(".vs", ".git", "obj", "bin", "Clone-Project.ps1")
@@ -32,7 +33,7 @@ if (Test-Path -Path $targetPath -PathType Container) {
     Remove-Item $targetPath -Recurse
 }
 
-XCopy-Item -Path $sourcePath -Destination $targetPath -Exclude $exclude
+XCopy-Item -Path $templatePath -Destination $targetPath -Exclude $exclude
 
 Get-ChildItem -Path $targetPath -Recurse | ForEach-Object  {
     if ($_.FullName.Contains($textToSearch)) {

@@ -1,65 +1,68 @@
 ﻿using System;
 
-using SOCATemplate.Application;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using TasqR;
 using System.Reflection;
-using SOCATemplate.DbMigration.SqlServer;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Design;
+using SOCATemplate.Infrastructure.Persistence;
+using System.IO;
+using SOCATemplate.Application.Common.Interfaces;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SOCATemplate.AdminConsole
 {
-    class Program
+    public class Program : IDesignTimeDbContextFactory<SOCATemplateDbContext>
     {
+        private static IConfiguration configuration = null;
+        public static IConfiguration Configuration
+        {
+            get
+            {
+                if (configuration == null)
+                {
+                    var configBuilder = new ConfigurationBuilder();
+
+                    configBuilder.SetBasePath(Directory.GetCurrentDirectory())
+                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                            .AddUserSecrets(Assembly.GetExecutingAssembly());
+
+                    configuration = configBuilder.Build();
+                }
+
+                return configuration;
+            }
+        }
+
+        private static IServiceProvider serviceProvider;
+        public static IServiceProvider ServiceProvider
+        {
+            get
+            {
+                if (serviceProvider == null)
+                {
+                    serviceProvider = new ServiceCollection()
+                        .ConfigureServices(Configuration)
+                        .BuildServiceProvider();
+                }
+
+                return serviceProvider;
+            }
+        }
+
         static async Task Main(string[] args)
         {
-            var mainService = CreateHostBuilder(args).Build().Services;
-            var mainProcessor = mainService.GetService<ITasqR>();
-
-
+            ServiceProvider.GetService<SOCATemplateDbContext>().Database.Migrate();
 
             Console.WriteLine("Hello World!");
-
-
-
         }
 
 
-        static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddInfrastructureUseSqlServer(configuration);
-            services.AddApplication();
-            services.AddTasqR(Assembly.GetExecutingAssembly());
-
-            services.AddMemoryCache();
-        }
+        
 
 
-        #region HostBuilder
-        static AppServiceBuilder CreateHostBuilder(string[] args)
-        {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var builder = new AppServiceBuilder();
-
-            ConfigureServices(builder.Services, config);
-
-            return builder;
-        }
-
-        class AppServiceBuilder
-        {
-            public ServiceCollection Services { get; } = new ServiceCollection();
-            public AppServiceProvider Build() => new AppServiceProvider(Services.BuildServiceProvider());
-        }
-
-        class AppServiceProvider
-        {
-            public AppServiceProvider(IServiceProvider services) { Services = services; }
-            public IServiceProvider Services { get; }
-        }
-        #endregion
+        public SOCATemplateDbContext CreateDbContext(string[] args) => ServiceProvider.GetService<SOCATemplateDbContext>();
     }
 }

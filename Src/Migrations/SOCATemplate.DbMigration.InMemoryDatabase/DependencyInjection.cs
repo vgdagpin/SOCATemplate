@@ -2,27 +2,33 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using SOCATemplate.Application.Common.Interfaces;
+using SOCATemplate.Infrastructure.Common;
 using SOCATemplate.Infrastructure.Persistence;
-using SOCATemplate.Interfaces;
 
 namespace SOCATemplate.DbMigration.InMemoryDatabase
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructureUseInMemory(this IServiceCollection services)
+        public static void UseSqlServer
+            (
+                this InfrastructureOption option,
+                string conString = null
+            )
         {
-            services.AddDbContext<SOCATemplateDbContext>((svc, options) =>
+            var conStr = conString ?? option.Configuration.GetConnectionString($"{nameof(SOCATemplateDbContext)}_MSSQLConStr");
+
+            option.Services.AddDbContext<SOCATemplateDbContext>((svc, options) =>
             {
                 options.UseInMemoryDatabase($"Test:{Guid.NewGuid().ToString().Substring(0, 8)}");
                 options.ConfigureWarnings(a => a.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
 
-            services.AddScoped<ISOCATemplateDbContext>(provider => provider.GetService<SOCATemplateDbContext>().LoadSeeds());
-            services.AddScoped<DbContext>(provider => provider.GetService<SOCATemplateDbContext>().LoadSeeds());
-
-            return services;
+            option.Services.AddScoped<ISOCATemplateDbContext>(provider => provider.GetService<SOCATemplateDbContext>());
+            option.Services.AddScoped<DbContext>(provider => provider.GetService<SOCATemplateDbContext>());
         }
 
         private static SOCATemplateDbContext LoadSeeds(this SOCATemplateDbContext dbContext)
@@ -32,8 +38,7 @@ namespace SOCATemplate.DbMigration.InMemoryDatabase
                 return dbContext;
             }
 
-            //new Job_Configuration().LoadSeedDataTo(dbContext.Jobs);
-            //new JobParameter_Configuration().LoadSeedDataTo(dbContext.JobParameters);
+            //new User_Configuration().LoadSeedDataTo(dbContext.Users);
 
             //dbContext.SaveChanges();
 
@@ -42,4 +47,6 @@ namespace SOCATemplate.DbMigration.InMemoryDatabase
             return dbContext;
         }
     }
+
+
 }

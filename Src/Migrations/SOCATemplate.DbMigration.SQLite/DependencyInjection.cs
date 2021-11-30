@@ -6,51 +6,35 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using SOCATemplate.Application.Common.Interfaces;
+using SOCATemplate.Infrastructure.Common;
 using SOCATemplate.Infrastructure.Persistence;
-using SOCATemplate.Interfaces;
 
 namespace SOCATemplate.DbMigration.SQLite
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructureUseSQLite(this IServiceCollection services, IConfiguration configuration)
+        public static void UseSQLite
+            (
+                this InfrastructureOption option,
+                string appDataFile
+            )
         {
-            string appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-
-            if (configuration["AppDataDirectory"] != null)
-            {
-                appDataDirectory = configuration["AppDataDirectory"];
-            }
-
-            if (!Directory.Exists(appDataDirectory))
-            {
-                Directory.CreateDirectory(appDataDirectory);
-            }
-
-            string conString = $"Filename={Path.Combine(appDataDirectory, $"SOCATemplateDb_SQLite.db3")}";
-            string conStringFromSettings = configuration.GetConnectionString($"{nameof(SOCATemplateDbContext)}_SQLiteConStr");
-
-            if (!string.IsNullOrEmpty(conStringFromSettings))
-            {
-                conString = conStringFromSettings;
-            }
-
-            services.AddDbContext<SOCATemplateDbContext>((svc, options) =>
+            option.Services.AddDbContext<SOCATemplateDbContext>((svc, options) =>
             {
                 options.UseSqlite
                 (
-                    connectionString: conString,
+                    connectionString: $"Filename={appDataFile}",
                     sqliteOptionsAction: opt =>
                     {
                         opt.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
+                        opt.MigrationsHistoryTable("tbl_MigrationHistory", "adm");
                     }
                 );
             });
 
-            services.AddScoped<ISOCATemplateDbContext>(provider => provider.GetService<SOCATemplateDbContext>());
-            services.AddScoped<DbContext>(provider => provider.GetService<SOCATemplateDbContext>());
-
-            return services;
+            option.Services.AddScoped<ISOCATemplateDbContext>(provider => provider.GetService<SOCATemplateDbContext>());
+            option.Services.AddScoped<DbContext>(provider => provider.GetService<SOCATemplateDbContext>());
         }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>  
+  <Entities>
+    <!--<ExcludedFiles>
+      <element>../../SOCATemplate.Application/Common/Entities/Base/BaseEntity.cs</element>
+    </ExcludedFiles>-->
+    <Namespaces>
+      <element>SOCATemplate.Application.Common.Entities</element>
+    </Namespaces>
+    <Path>../../SOCATemplate.Application/Common/Entities</Path>
+  </Entities>
+  
+  <DbContext>
+    <Name>SOCATemplateDbContext</Name>
+    <Namespace>SOCATemplate.Infrastructure.Persistence</Namespace>
+  </DbContext>
+  
+  <IDbContext>
+    <Name>ISOCATemplateDbContext</Name>
+    <Namespace>SOCATemplate.Application.Common.Interfaces</Namespace>
+  </IDbContext>
+</root>

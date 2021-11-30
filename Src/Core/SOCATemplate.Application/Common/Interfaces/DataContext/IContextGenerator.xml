@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Entities>
+    <Path>../../../Common/Entities</Path>
+    <!--<ExcludedFiles>
+      <element>../../../Common/Entities/Base/BaseEntity.cs</element>
+    </ExcludedFiles>-->
+    <Namespaces>
+      <element>SOCATemplate.Application.Common.Entities</element>
+    </Namespaces>    
+  </Entities>
+  
+  <IDbContext>
+    <Name>ISOCATemplateDbContext</Name>
+    <Namespace>SOCATemplate.Application.Common.Interfaces</Namespace>
+  </IDbContext>
+</root>
